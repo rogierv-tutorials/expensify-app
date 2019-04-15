@@ -14,26 +14,51 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-database.ref('expenses').push({
-  description: 'Gas bill',
-  note: '',
-  amount: 12300,
-  createdAt: 5000
+database.ref('expenses').on('child_removed', snapshot => {
+  console.log(snapshot.key, snapshot.val());
 });
 
-database.ref('expenses').push({
-  description: 'Coffee',
-  note: 'The best coffee',
-  amount: 150,
-  createdAt: 1000
+database.ref('expenses').on('child_changed', snapshot => {
+  console.log(snapshot.key, snapshot.val());
 });
 
-database.ref('expenses').push({
-  description: 'Rent',
-  note: 'Monthlt rent',
-  amount: 105000,
-  createdAt: 4000
+database.ref('expenses').on('child_added', snapshot => {
+  console.log(snapshot.key, snapshot.val());
 });
+
+// database
+//   .ref('expenses')
+//   .once('value')
+//   .then(snapshot => {
+//     const expenses = [];
+//     snapshot.forEach(childSnapshot => {
+//       expenses.push({
+//         id: childSnapshot.key,
+//         ...childSnapshot.val()
+//       });
+//     });
+
+//     console.log(expenses);
+//   });
+
+// database.ref('expenses').on('value', snapshot => {
+//   const expenses = [];
+//   snapshot.forEach(childSnapshot => {
+//     expenses.push({
+//       id: childSnapshot.key,
+//       ...childSnapshot.val()
+//     });
+//   });
+
+//   console.log(expenses);
+// });
+
+// database.ref('expenses').push({
+//   description: 'Gas bill',
+//   note: '',
+//   amount: 12300,
+//   createdAt: 5000
+// });
 
 // database.ref('notes/-LcVT5B0nSYyfEl_TGLF').remove();
 
