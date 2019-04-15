@@ -14,17 +14,60 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-const onValueChange = database.ref().on(
-  'value',
-  snapshot => {
-    const { name, job } = snapshot.val();
-    console.log(`${name} is a ${job.title} at ${job.company}`);
-  },
-  e => console.log('Error with data fetching', e)
-);
+database.ref('expenses').push({
+  description: 'Gas bill',
+  note: '',
+  amount: 12300,
+  createdAt: 5000
+});
 
-database.ref().update({ name: 'Rogier' });
-database.ref().update({ 'job/company': 'Amazon' });
+database.ref('expenses').push({
+  description: 'Coffee',
+  note: 'The best coffee',
+  amount: 150,
+  createdAt: 1000
+});
+
+database.ref('expenses').push({
+  description: 'Rent',
+  note: 'Monthlt rent',
+  amount: 105000,
+  createdAt: 4000
+});
+
+// database.ref('notes/-LcVT5B0nSYyfEl_TGLF').remove();
+
+// database.ref('notes').push({
+//   title: 'Course Topics',
+//   body: 'React, Firebase'
+// });
+
+// const notes = [
+//   {
+//     id: '12',
+//     title: 'First note',
+//     body: 'This is my note'
+//   },
+//   {
+//     id: '7641as',
+//     title: 'Second note',
+//     body: 'This is my note'
+//   }
+// ];
+
+// database.ref('notes').set(notes);
+
+// const onValueChange = database.ref().on(
+//   'value',
+//   snapshot => {
+//     const { name, job } = snapshot.val();
+//     console.log(`${name} is a ${job.title} at ${job.company}`);
+//   },
+//   e => console.log('Error with data fetching', e)
+// );
+
+// database.ref().update({ name: 'Rogier' });
+// database.ref().update({ 'job/company': 'Amazon' });
 
 // database
 //   .ref()
