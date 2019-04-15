@@ -28,13 +28,10 @@ database
   .then(() => console.log('Data is saved'))
   .catch(error => console.error('This failed.', error));
 
-// database.ref().set('This is my data.');
+database.ref('isSingle').set(null);
 
-// database.ref('age').set(37);
-// database.ref('location/city').set('Amsterdam');
-
-database
-  .ref('attributes')
-  .set({ height: 185, weight: 85 })
-  .then(() => console.log('Data is saved'))
-  .catch(error => console.error('This failed.', error));
+// database
+//   .ref('isSingle')
+//   .remove()
+//   .then(() => console.log('isSingle removed'))
+//   .catch(e => console.log(e));
