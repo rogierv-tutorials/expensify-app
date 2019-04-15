@@ -14,18 +14,27 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-database.ref().set({
-  name: 'Rogier Verkaik',
-  age: 35,
-  isSingle: false,
-  location: {
-    city: 'Rotterdam',
-    country: 'The Netherlands'
-  }
-});
+database
+  .ref()
+  .set({
+    name: 'Rogier Verkaik',
+    age: 35,
+    isSingle: false,
+    location: {
+      city: 'Rotterdam',
+      country: 'The Netherlands'
+    }
+  })
+  .then(() => console.log('Data is saved'))
+  .catch(error => console.error('This failed.', error));
 
 // database.ref().set('This is my data.');
 
-database.ref('age').set(37);
-database.ref('location/city').set('Amsterdam');
-database.ref('attributes').set({ height: 185, weight: 85 });
+// database.ref('age').set(37);
+// database.ref('location/city').set('Amsterdam');
+
+database
+  .ref('attributes')
+  .set({ height: 185, weight: 85 })
+  .then(() => console.log('Data is saved'))
+  .catch(error => console.error('This failed.', error));
