@@ -19,7 +19,11 @@ database
   .set({
     name: 'Rogier Verkaik',
     age: 35,
-    isSingle: false,
+    stressLevel: 6,
+    job: {
+      title: 'Software Developer',
+      company: 'Google'
+    },
     location: {
       city: 'Rotterdam',
       country: 'The Netherlands'
@@ -28,7 +32,11 @@ database
   .then(() => console.log('Data is saved'))
   .catch(error => console.error('This failed.', error));
 
-database.ref('isSingle').set(null);
+database.ref().update({
+  stressLevel: 9,
+  'job/company': 'Amazon',
+  'location/city': 'Seattle'
+});
 
 // database
 //   .ref('isSingle')
